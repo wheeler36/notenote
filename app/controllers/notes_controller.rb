@@ -1,5 +1,5 @@
 class NotesController < ApplicationController
-  before_action :find_note, only: [:show, :edit, :update, :destroy]
+  before_action :find_note_if_user, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!
 
   def index
@@ -41,8 +41,9 @@ class NotesController < ApplicationController
 
   private
 
-  def find_note
-    @note = Note.search_note_for_user(current_user.id, params[:id]).first
+  def find_note_if_user
+    @note = Note.find(params[:id])
+    redirect_to(root_path) unless current_user.id == @note.user.id
   end
 
   def note_params

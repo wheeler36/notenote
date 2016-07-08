@@ -1,13 +1,8 @@
-- if @note.user == current_user
-  .wrapper_with_padding
-    #note_show
-      %h1= @note.title
-      %p= simple_format(@note.content)
+.wrapper_with_padding
+  #note_show
+    %h1= @note.title
+    %p= simple_format(@note.content)
 
-      .buttons
-        = link_to "Edit", edit_note_path(@note), class: "button"
-        = link_to "Delete", note_path(@note), method: :delete, data: { confirm: "Are you sure?" }, class: "button"
-- else
-  %h1 Sorry, there was an error. Perhaps this is not your note. Please try another link.
-  = link_to "Back", :back
-  = link_to "Home", root_path
+    .buttons
+      = link_to "Edit", edit_note_path(@note), class: "button"
+      = link_to "Delete", note_path(@note), method: :delete, data: { confirm: "Are you sure?" }, class: "button"
